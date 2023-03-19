@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<h1>Select up to 10 items from the category of: <%= category %></h1>
+<form action="/select" method="post">
+  <label for="players">Choose from 0 to 4 teams:</label>
+  <input type="number" id="players" name="players" value="0" min="0" max="4"><br>
+    <% for(let i=0; i<imageArray.length; i++) { %>
+      <% let [imgName, ,] = imageArray[i].split('.'); %>
+      <div class="form-img-box">
+        <label for=<%= imgName %>>
+          <img class="select-img" src="images/<%= category %>/<%= imageArray[i] %>" alt=<%= imgName %>>
+        </label>
+        <input type="checkbox" name=<%= category %> value=<%= imageArray[i] %> id=<%= imgName %> />
+      </div>
+    <% } %>
+    <br>
+    <input type="submit" value="Submit Choices">
+  </form>
+
+  <script src="js/client.js" ></script>
+</body>
+</html>
+
