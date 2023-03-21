@@ -1,0 +1,23 @@
+#main {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  font-size: 2rem;
+  text-align: center;
+}
+ 
+#number {
+  height: 100px;
+  background-color: aquamarine;
+}
+
+#background {
+  background-color: darkblue;
+  height: 400px;
+}
+
+#foreground {
+  background-color: yellow;
+  height: 400px;
+  opacity: 0.9;
+}

@@ -3,33 +3,45 @@
 }
 
 .form-img-box {
-  border: 2px solid black;
+  border: 1px solid black;
   margin: 3px;
   display: inline-block;
 }
 
 .form-img-box:hover {
-  border: 1px solid gray;
+  opacity: 0.5;
+}
+
+.img-container {
+  display: inline-block;
+  margin: 0 4px;
+  width: 150px;
+  height: 107px;
+  background-color: blue;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 .game-img {
   width: 150px;
-  z-index: -1;
+  height: 107px;
+  visibility: hidden;
 }
 
-.cover {
-  display: inline-flex;
-  background-color: black;
-  color: white;
-  font-size: 1rem;
+.show {
+  visibility: visible;
 }
 
-.cover:hover {
-  background-color: black;
-  opacity: 0.9;
+.hide {
+  visibility: hidden;
 }
 
-p {
-  color: white;
-  font-size: 1rem;
+.player-box {
+ display: inline-block;
+ border: 1px solid black;
+ margin: 3px;
+ background-color: lightblue;
+ cursor: pointer; 
 }

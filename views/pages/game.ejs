@@ -1,14 +1,20 @@
 <%- include('../partials/header') %>
 
-<h1>number of players: <%= players %></h1>
 
-<% for(let i=0; i<userChoices.length; i++) { %>
-  <% let [imgName, ,] = userChoices[i].split('.'); %>
-  <div class="cover">
-    <p><%= i + 1 %></p>
-    <img class="game-img" src="images/<%= category %>/<%= userChoices[i] %>" alt=<%= imgName %>>
-  </div>
+<div hidden>
+  <p id="player-count"><%= players %></p>
+  <p id="category"><%= category %></p>
+  <% for (i=0; i<userChoices.length; i++) { %>
+    <p class="game-image-data"><%= userChoices[i] %></p>
     <% } %>
-  <script src="js/client.js" ></script>
+</div>
+
+<div id="player-container"></div>
+
+<div id="game-container"></div>
+
+<button id="continue">Continue</button>
+
+<script src="js/client.js"></script>
 </body>
 </html>
