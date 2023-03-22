@@ -19,7 +19,7 @@
   height: 107px;
   background-color: blue;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   cursor: pointer;
 }
@@ -28,6 +28,7 @@
   width: 150px;
   height: 107px;
   visibility: hidden;
+  z-index: -100;
 }
 
 .show {
@@ -44,4 +45,8 @@
  margin: 3px;
  background-color: lightblue;
  cursor: pointer; 
+}
+
+#add-points-msg {
+  visibility: hidden;
 }

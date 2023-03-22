@@ -1,6 +1,6 @@
 <%- include('../partials/header') %>
 
-<h1>Select up to 10 items from the category of: <%= category %></h1>
+<h1>Select from a minimum of 2 to 10 items from the category of: <%= category %></h1>
 <form action="/select" method="post">
   <label for="players">Choose from 0 to 4 teams:</label>
   <input type="number" id="players" name="players" value="0" min="0" max="4"><br>

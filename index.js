@@ -43,13 +43,20 @@ app.get("/select", function(req, res) {
 
 app.post("/select", function(req, res) {
   let userPics = req.body;
+  if (Object.keys(userPics).length ==  1) {
+    res.redirect("/select");
+  } 
   let arrayKey = Object.keys(userPics)[1]
   players = req.body.players;
   const firstArray = userPics[arrayKey];
-  const secondArray = [...firstArray];
-  const joinedArrays = [...firstArray, ...secondArray];
-  userChoices = joinedArrays.sort((a, b) => 0.5 - Math.random());
-  res.redirect("/game");
+  if (firstArray[0].length == 1) {
+    res.redirect("/select")
+  } else {
+    const secondArray = [...firstArray];
+    const joinedArrays = [...firstArray, ...secondArray];
+    userChoices = joinedArrays.sort((a, b) => 0.5 - Math.random());
+    res.redirect("/game");
+  }
 })
 
 app.get("/game", function(req, res) {

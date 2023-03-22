@@ -1,24 +1,27 @@
-// get list of image path end names from games.ejs
+//---------------------VARIABLE DECLARATIONS-------------------------
+
+// List of image path end names from games.ejs. ex: 'bear.png'
 const gameImages = document.getElementsByClassName("game-image-data");
 
-// get the category from games.ejs to use in the imagefile path
+// Category to use in the imagefile path.
 const category = document.getElementById("category").innerHTML;
 
-// get the continue button
+// Continue button.
 const nextButton = document.getElementById("continue");
 
-// get the container to append the template string to from games.ejs.
+// Container to append game-image template strings to.
 const gameContainer = document.getElementById("game-container");
 
-// get number of players
+// Number of players
 const playerCount = parseInt(document.getElementById("player-count").innerText);
 
-// get container to append players
+// Container to append players
 const playerContainer = document.getElementById("player-container");
 
-// hold the selected images.
+// Holds selected images.
 let selected = []
 
+//------------------------CREATE PLAYERS IF SELECTED----------------------
 
 
 if (playerCount != 0) {
@@ -34,11 +37,15 @@ if (playerCount != 0) {
   }
 }
 
+//-----------------------ADD EVENT LISTENERS TO PLAYERS----------------------
+
 const players = document.querySelectorAll(".player-box");
 
 players.forEach(item => {
   item.addEventListener('click', addScore)
 })
+
+//-----------------------ADD SCORE FUNCTION----------------------------------
 
 function addScore() {
   if (selected.length == 2 && 
@@ -46,8 +53,12 @@ function addScore() {
       let currentPlayer = this.querySelector(".player-score");
       let score = parseInt(currentPlayer.innerText) + 5;
       currentPlayer.innerText = score;
+      let disable = document.querySelectorAll(".player-box");
+      disable.forEach(item => {item.removeEventListener('click', addScore)});
     }
 }
+
+//------------------------------CREATE IMAGES--------------------------------
 
 for (let i=0; i<gameImages.length; i++) {
   const imgContainer = document.createElement('div');
@@ -59,7 +70,8 @@ for (let i=0; i<gameImages.length; i++) {
   gameContainer.appendChild(imgContainer);
 }
 
-nextButton.addEventListener('click', nextMove)
+
+//----------------EVENT LISTENERS ON IMAGES--------------------
 
 const imageList = document.querySelectorAll(".img-container");
 
@@ -69,12 +81,24 @@ imageList.forEach(item => {
 
 function showImage() {
   if (selected.length < 2) {
-    selected.push(this)
+    selected.push(this);
+    this.removeEventListener('click', showImage);
     this.firstElementChild.classList.add('show');
   }
 }
 
+
+//-----------------------NEXT MOVE BUTTON LOGIC-------------------------
+
+nextButton.addEventListener('click', nextMove)
+
 function nextMove() {
+  if (playerCount != 0) {
+    let disable = document.querySelectorAll(".player-box");
+    disable.forEach(item => {item.removeEventListener('click', addScore)});
+    let enable = document.querySelectorAll(".player-box");
+    enable.forEach(item => {item.addEventListener('click', addScore)});
+  }
   if (selected.length == 2) {
     let first = selected[0];
     let second = selected[1];
@@ -83,12 +107,14 @@ function nextMove() {
       second.firstElementChild.classList.remove('show');
       first.classList.add('hide');
       second.classList.add('hide');
-      first.removeEventListener('click', showImage);
+      first.removeEventListener('click', showImage); 
       second.removeEventListener('click', showImage);
       selected.length = 0;
     } else {
       first.firstElementChild.classList.remove('show');
       second.firstElementChild.classList.remove('show');
+      first.addEventListener('click', showImage);
+      second.addEventListener('click', showImage);
       selected.length = 0;
     }
   }
