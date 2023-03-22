@@ -21,31 +21,48 @@ const playerContainer = document.getElementById("player-container");
 // Holds selected images.
 let selected = []
 
-//------------------------CREATE PLAYERS IF SELECTED----------------------
+//-------CREATE PLAYERS IF SELECTED ADD EVENT LISTENERS----------------------
 
-
-if (playerCount != 0) {
-  for (let i=0; i<playerCount; i++) {
-    const player = document.createElement('div');
-    player.setAttribute('class', 'player-box');
-    let thisPlayer = 'player ' + (i + 1)
-    player.innerHTML = `
-    <h3>${thisPlayer}</h3>
-    <p>Score: <span class="player-score" >0</span></p>
-    `;
-    playerContainer.appendChild(player)
+function createPlayers() {
+  if (playerCount != 0) {
+    for (let i=0; i<playerCount; i++) {
+      const player = document.createElement('div');
+      player.setAttribute('class', 'player-box');
+      let thisPlayer = 'player ' + (i + 1)
+      player.innerHTML = `
+      <h3>${thisPlayer}</h3>
+      <p>Score: <span class="player-score" >0</span></p>
+      `;
+      playerContainer.appendChild(player)
+    }
   }
+  const players = document.querySelectorAll(".player-box");
+  players.forEach(item => {
+    item.addEventListener('click', addScore)
+  })
 }
 
-//-----------------------ADD EVENT LISTENERS TO PLAYERS----------------------
+//---------------------CREATE IMAGES ADD LISTENERS---------------------
 
-const players = document.querySelectorAll(".player-box");
+function createImages() {
+  for (let i=0; i<gameImages.length; i++) {
+    const imgContainer = document.createElement('div');
+    imgContainer.setAttribute('class', 'img-container');
+    let [imgName, ,] = gameImages[i].innerHTML.split('.');
+    imgContainer.innerHTML = `${i + 1}
+    <img class="game-img" id=${imgName} src="../images/${category}/${gameImages[i].innerHTML}" alt=${imgName}>
+    `;
+    gameContainer.appendChild(imgContainer);
+  }
+  const imageList = document.querySelectorAll(".img-container");
+  imageList.forEach(item => {
+    item.addEventListener('click', showImage);
+  })
+  nextButton.addEventListener('click', nextMove)
+}
 
-players.forEach(item => {
-  item.addEventListener('click', addScore)
-})
 
-//-----------------------ADD SCORE FUNCTION----------------------------------
+//-----------------------ADD SCORE FUNCTION------------------
 
 function addScore() {
   if (selected.length == 2 && 
@@ -55,44 +72,29 @@ function addScore() {
       currentPlayer.innerText = score;
       let disable = document.querySelectorAll(".player-box");
       disable.forEach(item => {item.removeEventListener('click', addScore)});
+      const pointMsg = document.getElementById("add-points-msg");
+      pointMsg.classList.add('hide');
     }
-}
-
-//------------------------------CREATE IMAGES--------------------------------
-
-for (let i=0; i<gameImages.length; i++) {
-  const imgContainer = document.createElement('div');
-  imgContainer.setAttribute('class', 'img-container');
-  let [imgName, ,] = gameImages[i].innerHTML.split('.');
-  imgContainer.innerHTML = `${i + 1}
-  <img class="game-img" id=${imgName} src="../images/${category}/${gameImages[i].innerHTML}" alt=${imgName}>
-  `;
-  gameContainer.appendChild(imgContainer);
-}
-
-
-//----------------EVENT LISTENERS ON IMAGES--------------------
-
-const imageList = document.querySelectorAll(".img-container");
-
-imageList.forEach(item => {
-  item.addEventListener('click', showImage);
-})
-
-function showImage() {
-  if (selected.length < 2) {
-    selected.push(this);
-    this.removeEventListener('click', showImage);
-    this.firstElementChild.classList.add('show');
   }
-}
 
-
-//-----------------------NEXT MOVE BUTTON LOGIC-------------------------
-
-nextButton.addEventListener('click', nextMove)
-
-function nextMove() {
+  
+  function showImage() {
+    if (selected.length < 2) {
+      selected.push(this);
+      this.removeEventListener('click', showImage);
+      this.firstElementChild.classList.add('show');
+    }
+    if (selected.length == 2 && 
+      selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
+      const pointMsg = document.getElementById("add-points-msg");
+      pointMsg.classList.remove('hide');
+    }
+  }
+  
+  //-----------------------NEXT MOVE BUTTON LOGIC-------------------------
+  
+  
+  function nextMove() {
   if (playerCount != 0) {
     let disable = document.querySelectorAll(".player-box");
     disable.forEach(item => {item.removeEventListener('click', addScore)});
@@ -119,3 +121,8 @@ function nextMove() {
     }
   }
 }
+
+//---------------------------MAIN GAME-----------------------------------
+
+createPlayers()
+createImages()

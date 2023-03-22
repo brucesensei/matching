@@ -47,6 +47,7 @@
  cursor: pointer; 
 }
 
+
 #add-points-msg {
-  visibility: hidden;
+  display: inline-block;
 }
