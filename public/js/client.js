@@ -66,7 +66,8 @@ function createImages() {
 
 function addScore() {
   if (selected.length == 2 && 
-    selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
+    selected[0].firstElementChild.id == selected[1].firstElementChild.id &&
+    playerCount != 0) {
       let currentPlayer = this.querySelector(".player-score");
       let score = parseInt(currentPlayer.innerText) + 5;
       currentPlayer.innerText = score;
@@ -85,7 +86,8 @@ function addScore() {
       this.firstElementChild.classList.add('show');
     }
     if (selected.length == 2 && 
-      selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
+      selected[0].firstElementChild.id == selected[1].firstElementChild.id &&
+      playerCount != 0) {
       const pointMsg = document.getElementById("add-points-msg");
       pointMsg.classList.remove('hide');
     }

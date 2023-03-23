@@ -16,7 +16,7 @@ app.set("view engine", "ejs");
 
 //---------------------CATEGORY ARRAY---------------------------
 
-const choices = ["animals", "nature", "months"];
+const choices = ["animals", "nature", "months", "sports", "feelings", "food", "drinks","dessert", "fruits_vegetables", "foodstuff", "tastes", "sea_creatures", "days", "countries"];
 
 //------------------VARIABLES TO PASS WITH EJS------------------
 
