@@ -24,17 +24,15 @@ let selected = []
 //-------CREATE PLAYERS IF SELECTED ADD EVENT LISTENERS----------------------
 
 function createPlayers() {
-  if (playerCount != 0) {
-    for (let i=0; i<playerCount; i++) {
-      const player = document.createElement('div');
-      player.setAttribute('class', 'player-box');
-      let thisPlayer = 'player ' + (i + 1)
-      player.innerHTML = `
-      <h3>${thisPlayer}</h3>
-      <p>Score: <span class="player-score" >0</span></p>
-      `;
-      playerContainer.appendChild(player)
-    }
+  for (let i=0; i<playerCount; i++) {
+    const player = document.createElement('div');
+    player.setAttribute('class', 'player-box');
+    let thisPlayer = 'Team ' + (i + 1)
+    player.innerHTML = `
+    <h3>${thisPlayer}</h3>
+    <p>Points: <span class="player-score" >0</span></p>
+    `;
+    playerContainer.appendChild(player)
   }
   const players = document.querySelectorAll(".player-box");
   players.forEach(item => {
@@ -66,10 +64,9 @@ function createImages() {
 
 function addScore() {
   if (selected.length == 2 && 
-    selected[0].firstElementChild.id == selected[1].firstElementChild.id &&
-    playerCount != 0) {
+    selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
       let currentPlayer = this.querySelector(".player-score");
-      let score = parseInt(currentPlayer.innerText) + 5;
+      let score = parseInt(currentPlayer.innerText) + 10;
       currentPlayer.innerText = score;
       let disable = document.querySelectorAll(".player-box");
       disable.forEach(item => {item.removeEventListener('click', addScore)});
@@ -86,8 +83,7 @@ function addScore() {
       this.firstElementChild.classList.add('show');
     }
     if (selected.length == 2 && 
-      selected[0].firstElementChild.id == selected[1].firstElementChild.id &&
-      playerCount != 0) {
+      selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
       const pointMsg = document.getElementById("add-points-msg");
       pointMsg.classList.remove('hide');
     }
@@ -97,12 +93,10 @@ function addScore() {
   
   
   function nextMove() {
-  if (playerCount != 0) {
-    let disable = document.querySelectorAll(".player-box");
-    disable.forEach(item => {item.removeEventListener('click', addScore)});
-    let enable = document.querySelectorAll(".player-box");
-    enable.forEach(item => {item.addEventListener('click', addScore)});
-  }
+  let disable = document.querySelectorAll(".player-box");
+  disable.forEach(item => {item.removeEventListener('click', addScore)});
+  let enable = document.querySelectorAll(".player-box");
+  enable.forEach(item => {item.addEventListener('click', addScore)});
   if (selected.length == 2) {
     let first = selected[0];
     let second = selected[1];

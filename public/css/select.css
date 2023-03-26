@@ -1,0 +1,56 @@
+.select-img {
+  width: 100px;
+}
+
+.form-img-box {
+  border: 2px solid lightgray;
+  margin: 3px;
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.form-img-box:hover {
+  opacity: 0.99;
+}
+
+.form-img-box img {
+  cursor: pointer;
+}
+
+.form-img-box input {
+  width: 0;
+  height: 0;
+}
+
+.form-img-box:has(input:checked) {
+  border: 2px solid rgb(108, 108, 253);
+  opacity: 0.99;
+}
+
+.player-group {
+  font-size: 2rem;
+}
+
+.player-group label {
+  margin-left: 30px;
+}
+
+.button {
+  margin: 3px 0 0 3px;
+  width: 114px;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgb(108, 108, 253);
+  color: white;
+}
+
+input[type="radio"] {
+  -ms-transform: scale(1.7);
+  -webkit-transform: scale(1.7);
+  transform: scale(1.7);
+  cursor: pointer;
+}
