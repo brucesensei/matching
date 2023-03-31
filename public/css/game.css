@@ -9,7 +9,7 @@
   text-align: center;
   cursor: pointer;
 }
-
+ 
 .game-img {
   width: 150px;
   height: 107px;
@@ -27,12 +27,24 @@
 
 .player-box {
  display: inline-block;
- border: 1px solid black;
- margin: 3px;
- background-color: lightblue;
+ border-radius: 10px;
+ border: 1px solid rgb(205, 224, 226);;
+ margin: 8px;
+ padding: 5px 10px;
+ background-color: rgb(205, 224, 226);
  cursor: pointer; 
+}
+
+.player-box h3, p {
+  margin: 0;
 }
 
 #add-points-msg {
   display: inline-block;
+}
+
+
+.change-color {
+  color: white;
+  background-color: blue;
 }

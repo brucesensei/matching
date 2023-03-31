@@ -29,6 +29,7 @@
 
 .player-group {
   font-size: 2rem;
+  margin-top: 20px;
 }
 
 .player-group label {
@@ -53,4 +54,9 @@ input[type="radio"] {
   -webkit-transform: scale(1.7);
   transform: scale(1.7);
   cursor: pointer;
+}
+
+.img-label {
+  width: 0;
+  height: 0;
 }

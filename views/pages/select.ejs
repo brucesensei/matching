@@ -6,7 +6,6 @@
 <a href="/">Home</a>
 
 
-<h1>Select from a minimum of 2 to 10 items from the category of: <%= category %></h1>
 <form action="/select" method="post">
   <div class="player-group">
     <span>Select number of players:</span>
@@ -23,10 +22,11 @@
     <label for="6">6</label>
     <input type="radio" id="players" name="players" value="6">
   </div>
-    <% for(let i=0; i<imageArray.length; i++) { %>
+  <h1>Select from a minimum of 2 to 10 items.</h1>
+  <% for(let i=0; i<imageArray.length; i++) { %>
       <% let [imgName, ,] = imageArray[i].split('.'); %>
       <div class="form-img-box">
-        <label for=<%= imgName %>>
+        <label class="img-label" for=<%= imgName %>>
           <img class="select-img" src="images/<%= category %>/<%= imageArray[i] %>" alt=<%= imgName %>>
         </label>
         <input type="checkbox" name=<%= category %> value=<%= imageArray[i] %> id=<%= imgName %> />
