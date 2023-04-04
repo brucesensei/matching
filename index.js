@@ -18,7 +18,9 @@ app.set("view engine", "ejs");
 
 const choices = ["animals", "nature", "months", "sports", "feelings",
 "food", "drinks","dessert", "fruits vegetables", "foodstuff", "tastes",
-"sea creatures", "days", "countries"];
+"sea creatures", "days", "countries", "people", "verbs", "daily schedule",
+"clothes", "body", "places", "directions", "subjects", "school", "insturments",
+"objects", "activities", "events", "adjectives", "occupations", "club"];
 
 //------------------VARIABLES TO PASS WITH EJS------------------
 
