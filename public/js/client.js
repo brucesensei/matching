@@ -60,15 +60,22 @@ function createImages() {
   });
 }
 
+// find all images that have a class of show
+
 function showImage() {
   // Stores the first selected image in the selected array.
-  this.removeEventListener('click', showImage);
   if (selected.length < 2) {
+    this.removeEventListener('click', showImage);
     selected.push(this);
     this.firstElementChild.classList.add('show');
+    console.log(selected)
   }
   if (selected.length == 2) {
     // Condition if selected array is full.
+    const imageList = document.querySelectorAll(".img-container");
+    imageList.forEach(item => {
+    item.removeEventListener('click', showImage);
+    });
     let first = selected[0];
     let second = selected[1];
     if (selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
@@ -79,9 +86,9 @@ function showImage() {
       const updatedScore = parseInt(scoreSpan.innerHTML) + 1;
       scoreSpan.innerText = updatedScore;
       setTimeout( () => {
-        // After a set interval remove the current player color, change players,
-        // add player color to the next player box, hide and remove click functionality from
-        // successfully matched tiles, reset the selected array to 0.
+        // After 2 seconds remove the current player color, change players,
+        // add player color to the next player box,
+        // hide successfully matched tiles, reset the selected array to 0.
         updatePlayer.classList.remove('change-color');
         currentPlayer < (playerCount - 1) ? currentPlayer += 1 : currentPlayer = 0;
         getCurrentPlayer(currentPlayer).classList.add('change-color');
@@ -89,10 +96,10 @@ function showImage() {
         second.firstElementChild.classList.remove('show');
         first.classList.add('hide');
         second.classList.add('hide');
-        first.removeEventListener('click', showImage); 
-        second.removeEventListener('click', showImage);
         selected.length = 0;
-
+        imageList.forEach(item => {
+          item.addEventListener('click', showImage);
+        });
       }, 2000);
     } else {
       setTimeout( () => {
@@ -103,10 +110,10 @@ function showImage() {
         getCurrentPlayer(currentPlayer).classList.add('change-color');
         first.firstElementChild.classList.remove('show');
         second.firstElementChild.classList.remove('show');
-        first.addEventListener('click', showImage);
-        second.addEventListener('click', showImage);
         selected.length = 0;
-        
+        imageList.forEach(item => {
+          item.addEventListener('click', showImage);
+        });
       }, 2000);
     }
   }
