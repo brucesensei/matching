@@ -62,14 +62,13 @@ function createImages() {
 
 function showImage() {
   // Stores the first selected image in the selected array.
+  this.removeEventListener('click', showImage);
   if (selected.length < 2) {
     selected.push(this);
-    this.removeEventListener('click', showImage);
     this.firstElementChild.classList.add('show');
   }
   if (selected.length == 2) {
     // Condition if selected array is full.
-    this.removeEventListener('click', showImage);
     let first = selected[0];
     let second = selected[1];
     if (selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
