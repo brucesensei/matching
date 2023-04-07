@@ -68,7 +68,6 @@ function showImage() {
     this.removeEventListener('click', showImage);
     selected.push(this);
     this.firstElementChild.classList.add('show');
-    console.log(selected)
   }
   if (selected.length == 2) {
     // Condition if selected array is full.
