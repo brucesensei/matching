@@ -69,6 +69,7 @@ function showImage() {
   }
   if (selected.length == 2) {
     // Condition if selected array is full.
+    this.removeEventListener('click', showImage);
     let first = selected[0];
     let second = selected[1];
     if (selected[0].firstElementChild.id == selected[1].firstElementChild.id) {
